@@ -30,37 +30,30 @@ export class Reddit {
      .map(res => {
 
       let resJ = JSON.parse(res['_body']);
-      console.log('resJ: ', resJ)
-      // remove unwanted posts
+      //console.log('resJ: ', resJ);
+      this.fetchUserData().subscribe(res =>{
+        let resUser = JSON.parse(res['_body']);
 
 
-
+        console.log('res user data: ');
+        console.log(resUser.data);
+      });
        return resJ;
      })
-    // .subscribe(
-    //   data => {
-    //       console.log('data: ', data);
-    //       return data;
-        // this.posts = data.data.children;
-        // for (let i = 0; i <= this.posts.length - 1; i++) {
-        //   console.log('url: ', data.data.children[i].data);
-        //   let obj = data.data.children[i].data;
-        //   this.foo = obj['post_hint'];
-        //   let fooVid = obj['url'];
-
-        //   if (obj['post_hint'] == 'image') {
-        //     //console.log('valid post: ' + JSON.stringify(obj));
-        //     this.gifs.push(obj);
-        //   }
-        //   console.log('  this.gifs');
-        //   console.log(this.gifs);
-        //}
-    //   },
-    //   err => {
-    //     console.log('Oops!');
-    //   }
-    // );
   }
+
+  // ['data']['icon_img']
+
+  fetchUserData() {
+    return this.http
+   .get('https://www.reddit.com/user/discopotatoo/about.json')
+    .map(res => {
+
+     //let resJ = JSON.parse(res['_body']);
+
+      return res;
+    })
+ }
 
   fetchData(): void {
 

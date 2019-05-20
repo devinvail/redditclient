@@ -32,6 +32,9 @@ export class HomePage {
   authors: Array<string> = [];
   imgUrl: Array<string> = [];
   avatarUrl: Array<string> = [];
+  upsUrl: Array<string> = [];
+  karmaUrl: Array<string> = [];
+  postsDone: boolean = false;
 
   avatar: string = 'https://www.reddit.com/user/NinetyTres/about.json'
 
@@ -50,13 +53,24 @@ export class HomePage {
     this.redditService.fetchPosts().subscribe(res =>{
     //  let resJ = JSON.parse(res['_body'])
 
-    // author
+
+
+
+    //author
     //permalink
     //url
     //title
+
+
     //avatar
+    //ups
+    //karma
 
     //this.posts = res.data.children.data;
+
+
+
+
 
 
       for(let i=0; i < res.data.children.length -1; i++){
@@ -67,15 +81,27 @@ export class HomePage {
         // console.log(res.data.children[i].data['title']);
 
         // this.authors.push[res.data.children[i].data['author']]
-        this.posts.push(res.data.children[i].data);
+        if(res.data.children[i].data['author'] != 'AutoModerator'){
+          this.posts.push(res.data.children[i].data);
+        }
+
+
 
         // let tempUrl = 'https://www.reddit.com/user/' + res.data.children[i].data['author'] + '/about.json'
-        let tempUrl ='https://www.redditstatic.com/avatars/avatar_default_11_FF66AC.png'
+        let tempUrl ='https://www.redditstatic.com/avatars/avatar_default_11_FF66AC.png';
+        let tempUrl2 ='50';
+        let tempUrl3 ='1000';
+
+
+
+
         this.avatarUrl.push(tempUrl);
+        this.upsUrl.push(tempUrl2);
+        this.karmaUrl.push(tempUrl3);
 
       }
-
-      console.log('avatarUrl: ', this.avatarUrl);
+      this.postsDone = true;
+      //console.log('avatarUrl: ', this.avatarUrl);
 
 
 
