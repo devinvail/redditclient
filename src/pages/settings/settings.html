@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>Settings</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+	<h3>Subreddit: Motorcycles</h3>
+
+	<!-- <ion-input type="text" placeholder="enter subreddit name..." [(ngModel)]="subreddit"></ion-input> -->
+
+	<h3>Sort</h3>
+
+	<ion-segment color="secondary" [(ngModel)]="sort">
+		<ion-segment-button value="hot">
+		  Hot
+		</ion-segment-button>
+		<ion-segment-button value="top">
+		  Top
+		</ion-segment-button>
+		<ion-segment-button value="new">
+		  New
+		</ion-segment-button>
+	</ion-segment>
+
+	<h3>Per Page</h3>
+
+	<ion-segment color="secondary" [(ngModel)]="perPage">
+		<ion-segment-button value="5">
+		  5
+		</ion-segment-button>
+		<ion-segment-button value="10">
+		  10
+		</ion-segment-button>
+		<ion-segment-button value="15">
+		  15
+		</ion-segment-button>
+	</ion-segment>
+
+	<button ion-button full (click)="save()" color="secondary" style="margin: 20px 0px;">Save Settings</button>
+
+</ion-content>
