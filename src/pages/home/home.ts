@@ -16,6 +16,10 @@ import {
 import {jsonpFactory} from '@angular/http/src/http_module';
 import {JsonPipe} from '@angular/common';
 import {stringify} from '@angular/core/src/util';
+import { UserPage } from '../user/user';
+import { UserSettingsProvider } from '../../providers/user-settings/user-settings';
+
+
 
 @Component({
   selector: 'page-home',
@@ -46,101 +50,47 @@ export class HomePage {
     public platform: Platform,
     private keyboard: Keyboard,
     public redditService: Reddit,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    userSettings: UserSettingsProvider
   ) {
     this.subredditControl = new FormControl();
 
-    this.redditService.fetchPosts().subscribe(res =>{
+    this.redditService.fetchAll().subscribe(res =>{
     //  let resJ = JSON.parse(res['_body'])
 
+    //console.log('userSettings.type: ', userSettings.type)
 
-
-
+  //FROM MAIN JSON
     //author
     //permalink
     //url
     //title
-
-
-    //avatar
     //ups
+
+//FROM USER JSON
+    //avatar
     //karma
 
-    //this.posts = res.data.children.data;
-
-
-
-
-
-
       for(let i=0; i < res.data.children.length -1; i++){
-        // console.log('res:------------------------')
-        // console.log(res.data.children[i].data['author']);
-        // console.log(res.data.children[i].data['permalink']);
-        // console.log(res.data.children[i].data['url']);
-        // console.log(res.data.children[i].data['title']);
-
-        // this.authors.push[res.data.children[i].data['author']]
-        if(res.data.children[i].data['author'] != 'AutoModerator'){
+        // make sure only non-moderators and posts with images are displayed
+         if(res.data.children[i].data['author'] != 'AutoModerator' && res.data.children[i].data['url'].slice(-4)=='.jpg'){
           this.posts.push(res.data.children[i].data);
         }
 
-
-
-        // let tempUrl = 'https://www.reddit.com/user/' + res.data.children[i].data['author'] + '/about.json'
-        let tempUrl ='https://www.redditstatic.com/avatars/avatar_default_11_FF66AC.png';
-        let tempUrl2 ='50';
-        let tempUrl3 ='1000';
-
-
-
-
-        this.avatarUrl.push(tempUrl);
-        this.upsUrl.push(tempUrl2);
-        this.karmaUrl.push(tempUrl3);
-
+        console.log('this.posts: ', this.posts);
       }
       this.postsDone = true;
-      //console.log('avatarUrl: ', this.avatarUrl);
-
-
-
-
     })
-
-
-
-
-    // this.http
-    //   .get('https://www.reddit.com/r/motorcycles/' + this.sort + '.json?limit=100')
-    //   .map(res => res.json())
-    //   .subscribe(
-    //     data => {
-    //       this.posts = data.data.children;
-    //       for (let i = 0; i <= this.posts.length - 1; i++) {
-    //         console.log('url: ', data.data.children[i].data);
-    //         let obj = data.data.children[i].data;
-    //         this.foo = obj['post_hint'];
-    //         let fooVid = obj['url'];
-
-    //         if (obj['post_hint'] == 'image') {
-    //           //console.log('valid post: ' + JSON.stringify(obj));
-    //           this.gifs.push(obj);
-    //         }
-    //         console.log('  this.gifs');
-    //         console.log(this.gifs);
-    //       }
-    //     },
-    //     err => {
-    //       console.log('Oops!');
-    //     }
-    //   );
-
-
-
-
   }
 
+  showUser(val){
+      console.log('this.posts clicked: ' , this.posts[val]);
+
+      let author = this.posts[val]['author'];
+      const modal = this.modalCtrl.create(UserPage, {author: author});
+      modal.onDidDismiss((data)=> {});
+      modal.present();
+  }
 
   ionViewDidLoad() {
     this.subredditControl.valueChanges

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
+import { UserSettingsProvider } from './user-settings/user-settings';
 
 @Injectable()
 export class Reddit {
@@ -14,39 +15,59 @@ export class Reddit {
   perPage: string = '15';
   after: string;
   stopIndex: number;
-  sort: string = 'hot'
+  sort: string;
   moreCount: number = 0;
   gifs: Array<string> = [];
   foo: any;
   obj: any;
 
-  constructor(public http: Http) {
+  constructor(public http: Http, userSettings: UserSettingsProvider) {
+      console.log('userSettings in reddit service: ', userSettings.type);
+      this.sort = userSettings.type
+  }
 
+  fetchAll() {
+  return this.http.get('https://www.reddit.com/r/motorcycles/hot/.json?limit=100').map(postData => {
+
+    let resJ = JSON.parse(postData['_body']);
+
+    //console.log('postData: ', resJ);
+
+    this.http.get('https://www.reddit.com/user/discopotatoo/about.json').subscribe(authorData => {
+      // character.homeworld = homeworld;
+      // this.loadedCharacter = character;
+
+    //console.log('authorData: ', authorData);
+
+
+    });
+    return resJ;
+  });
   }
 
   fetchPosts() {
-     return this.http
-    .get('https://www.reddit.com/r/motorcycles/' + this.sort + '.json?limit=100')
-     .map(res => {
+    //  return this.http
+    // .get('https://www.reddit.com/r/motorcycles/' + this.sort + '.json?limit=10')
+    //  .map(res => {
 
-      let resJ = JSON.parse(res['_body']);
-      //console.log('resJ: ', resJ);
-      this.fetchUserData().subscribe(res =>{
-        let resUser = JSON.parse(res['_body']);
+    //   let resJ = JSON.parse(res['_body']);
+    //   //console.log('resJ: ', resJ);
+    //   this.fetchUserData().subscribe(res =>{
+    //     let resUser = JSON.parse(res['_body']);
 
 
-        console.log('res user data: ');
-        console.log(resUser.data);
-      });
-       return resJ;
-     })
+    //     //console.log('res user data: ');
+    //     //console.log(resUser.data);
+    //   });
+    //    return resJ;
+    //  })
   }
 
   // ['data']['icon_img']
 
-  fetchUserData() {
+  fetchUserData(author: string) {
     return this.http
-   .get('https://www.reddit.com/user/discopotatoo/about.json')
+   .get('https://www.reddit.com/user/' + author + '/about.json')
     .map(res => {
 
      //let resJ = JSON.parse(res['_body']);

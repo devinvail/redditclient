@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewController, NavParams } from 'ionic-angular';
+import { UserSettingsProvider } from '../../providers/user-settings/user-settings';
 
 @Component({
   selector: 'page-settings',
@@ -12,7 +13,11 @@ export class SettingsPage {
   subreddit: string;
 
 
-  constructor(public view: ViewController, public navParams: NavParams) {
+  constructor(
+    public view: ViewController,
+    public navParams: NavParams,
+    userSettings: UserSettingsProvider
+    ) {
     this.perPage = this.navParams.get('perPage');
     this.sort = this.navParams.get('sort');
     this.subreddit = this.navParams.get('subreddit');

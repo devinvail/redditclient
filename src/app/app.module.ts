@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {HttpModule} from '@angular/http';
+import {HttpModule, } from '@angular/http';
 import {NgModule, ErrorHandler} from '@angular/core';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {MyApp} from './app.component';
@@ -12,13 +12,21 @@ import {Data} from '../providers/data';
 import {Reddit} from '../providers/reddit';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
+import { TabsPage } from '../pages/tabs/tabs';
+import { UserPage } from '../pages/user/user';
+import { HttpClientModule } from '@angular/common/http';
+import { UserSettingsProvider } from '../providers/user-settings/user-settings';
+
+
+
 
 @NgModule({
-  declarations: [MyApp, HomePage, SettingsPage],
-  imports: [BrowserModule, HttpModule, IonicModule.forRoot(MyApp), IonicStorageModule.forRoot()],
+  declarations: [MyApp, HomePage, SettingsPage, TabsPage, UserPage],
+  imports: [BrowserModule, HttpModule, IonicModule.forRoot(MyApp), IonicStorageModule.forRoot(), HttpClientModule],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, SettingsPage],
+  entryComponents: [MyApp, HomePage, SettingsPage, TabsPage, UserPage],
   providers: [
+    UserSettingsProvider,
     IonicStorageModule,
     Data,
     Keyboard,
@@ -26,7 +34,7 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
     StatusBar,
     InAppBrowser,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ],
 })
 export class AppModule {}

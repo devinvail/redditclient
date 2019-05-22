@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="secondary">
+  <ion-navbar  color="primary" >
 
     <ion-title>
       <!-- <ion-searchbar color="primary" placeholder="enter subreddit name..." [(ngModel)]="subredditValue"
@@ -16,34 +16,32 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content >
+<ion-content>
 
-    <div *ngFor="let post of posts; let i = index" (click)="showComments(post)">
+    <div *ngFor="let post of posts; let i = index" >
         <ion-card>
 
-            <ion-item *ngIf="karmaUrl.length>1">
-              <ion-avatar item-start>
-                <img [src]="avatarUrl[i]">
-              </ion-avatar>
-              <h2  style='padding-right: 20px'>{{post['author']}}</h2>
-              <div ion-button icon-start clear small  style='margin-left: 0px; padding: 0px'>
+            <ion-item (click)="showUser(i)">
+
+              <h2>{{post['author']}}</h2>
+              <!-- <div ion-button icon-start clear small  style='margin-left: 0px; padding: 0px'>
 
                   <ion-icon name="sunny"></ion-icon>
                   <div>karma: {{karmaUrl[i]}}</div>
-              </div>
+              </div> -->
             </ion-item>
 
             <img [src]="post['url']">
 
-            <ion-card-content>
-              <h2>{{post['title']}}</h2>
+            <ion-card-content (click)="showComments(post)">
+              <p >{{post['title']}}</p>
             </ion-card-content>
 
             <ion-row>
               <ion-col>
                 <button ion-button icon-start clear small>
                   <ion-icon name="thumbs-up"></ion-icon>
-                  <div>Ups: {{upsUrl[i]}}</div>
+                  <div>Ups: {{post['ups']}}</div>
                 </button>
               </ion-col>
             </ion-row>
