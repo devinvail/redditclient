@@ -30,12 +30,8 @@ export class UserPage {
       let resJ = JSON.parse(res['_body'])
         console.log('res from user call: ');
         console.log(resJ['data']);
-
-
-
-        this.karma = resJ['data']['link_karma']
-        console.log(this.karma);
-        //console.log('obj from user call: ', this.userObj);
+        this.avatar = resJ['data']['icon_img'];
+        this.karma = resJ['data']['link_karma'];
     })
   }
 
