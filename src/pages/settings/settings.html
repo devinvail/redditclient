@@ -10,14 +10,7 @@
 </ion-header>
 
 <ion-content padding>
-
-	<h3>Subreddit: Motorcycles</h3>
-
-	<!-- <ion-input type="text" placeholder="enter subreddit name..." [(ngModel)]="subreddit"></ion-input> -->
-
-	<h3>Sort</h3>
-
-	<ion-segment color="secondary" [(ngModel)]="sort">
+	<ion-segment color="secondary" [(ngModel)]="settings.sort">
 		<ion-segment-button value="hot">
 		  Hot
 		</ion-segment-button>
@@ -26,20 +19,6 @@
 		</ion-segment-button>
 		<ion-segment-button value="new">
 		  New
-		</ion-segment-button>
-	</ion-segment>
-
-	<h3>Per Page</h3>
-
-	<ion-segment color="secondary" [(ngModel)]="perPage">
-		<ion-segment-button value="5">
-		  5
-		</ion-segment-button>
-		<ion-segment-button value="10">
-		  10
-		</ion-segment-button>
-		<ion-segment-button value="15">
-		  15
 		</ion-segment-button>
 	</ion-segment>
 

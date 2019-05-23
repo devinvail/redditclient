@@ -2,9 +2,7 @@
   <ion-navbar  color="primary" >
 
     <ion-title>
-      <!-- <ion-searchbar color="primary" placeholder="enter subreddit name..." [(ngModel)]="subredditValue"
-        [formControl]="subredditControl" value=""></ion-searchbar> -->
-        Reddit Client App
+        Reddit Funnies
     </ion-title>
 
     <ion-buttons end>
@@ -17,7 +15,8 @@
 </ion-header>
 
 <ion-content>
-
+  <!-- <video loop [src]="post.data.url" [poster]="post.data.snapshot">
+  </video> -->
     <div *ngFor="let post of posts; let i = index" >
         <ion-card>
 

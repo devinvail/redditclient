@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ViewController, NavParams } from 'ionic-angular';
 import { UserSettingsProvider } from '../../providers/user-settings/user-settings';
+import { Data } from '../../providers/data';
 
 @Component({
   selector: 'page-settings',
@@ -8,30 +9,23 @@ import { UserSettingsProvider } from '../../providers/user-settings/user-setting
 })
 export class SettingsPage {
 
-  perPage: string;
-  sort: string;
-  subreddit: string;
-
+  public settings = {
+    sort: 'hot'
+  };
 
   constructor(
     public view: ViewController,
     public navParams: NavParams,
-    userSettings: UserSettingsProvider
+    public dataService: Data
     ) {
-    this.perPage = this.navParams.get('perPage');
-    this.sort = this.navParams.get('sort');
-    this.subreddit = this.navParams.get('subreddit');
+    this.settings = this.navParams.get('settings');
   }
 
   save(): void {
-
-  	let settings = {
-  		perPage: this.perPage,
-  		sort: this.sort,
-  		subreddit: this.subreddit
-  	};
-
-  	this.view.dismiss(settings);
+     console.log('getting type in settings: ', this.settings);
+    // save new setttings to LS
+    this.dataService.save(this.settings)
+    this.view.dismiss(this.settings);
   }
 
   close(): void {

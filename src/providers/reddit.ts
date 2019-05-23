@@ -22,12 +22,12 @@ export class Reddit {
   obj: any;
 
   constructor(public http: Http, userSettings: UserSettingsProvider) {
-      console.log('userSettings in reddit service: ', userSettings.type);
-      this.sort = userSettings.type
+      //this.sort = userSettings.type
   }
 
-  fetchAll() {
-  return this.http.get('https://www.reddit.com/r/motorcycles/hot/.json?limit=100').map(postData => {
+  fetchAll(settings) {
+    console.log('sort in reddir: ', settings.sort)
+  return this.http.get('https://www.reddit.com/r/funny/' + settings.sort  + '/.json?limit=100').map(postData => {
 
     let resJ = JSON.parse(postData['_body']);
 
@@ -44,26 +44,6 @@ export class Reddit {
     return resJ;
   });
   }
-
-  fetchPosts() {
-    //  return this.http
-    // .get('https://www.reddit.com/r/motorcycles/' + this.sort + '.json?limit=10')
-    //  .map(res => {
-
-    //   let resJ = JSON.parse(res['_body']);
-    //   //console.log('resJ: ', resJ);
-    //   this.fetchUserData().subscribe(res =>{
-    //     let resUser = JSON.parse(res['_body']);
-
-
-    //     //console.log('res user data: ');
-    //     //console.log(resUser.data);
-    //   });
-    //    return resJ;
-    //  })
-  }
-
-  // ['data']['icon_img']
 
   fetchUserData(author: string) {
     return this.http
