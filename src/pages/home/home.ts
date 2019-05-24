@@ -30,8 +30,6 @@ export class HomePage {
   karmaUrl: Array<string> = [];
   public settings: object = {}
 
-  avatar: string = 'https://www.reddit.com/user/NinetyTres/about.json'
-
   constructor(
     public dataService: Data,
     public navCtrl: NavController,
