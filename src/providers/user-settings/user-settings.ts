@@ -10,14 +10,4 @@ export class UserSettingsProvider {
   constructor(public http: HttpClient) {
     console.log('Hello UserSettingsProvider Provider');
   }
-
-//   set type (type: string) {
-//     this.type = type;
-//     console.log('setting type: ', type);
-//   }
-
-//   get type(): string {
-//     return this._type;
-// }
-
 }
