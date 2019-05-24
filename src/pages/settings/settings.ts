@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ViewController, NavParams } from 'ionic-angular';
-import { UserSettingsProvider } from '../../providers/user-settings/user-settings';
 import { Data } from '../../providers/data';
 
 @Component({
@@ -23,8 +22,8 @@ export class SettingsPage {
   }
 
   save(): void {
-     console.log('getting type in settings: ', this.settings);
-    // save new setttings to LS
+     console.log('sending new settings to data service from settings: ', this.settings);
+    // send new setttings to data service
     this.dataService.save(this.settings)
     this.view.dismiss(this.settings);
   }
