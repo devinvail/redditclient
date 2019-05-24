@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Reddit } from '../../providers/reddit';
+import * as moment from 'moment';
 
 
 @IonicPage()
@@ -13,6 +14,7 @@ export class UserPage {
   author: string;
   avatar: string;
   karma: string;
+  cakeDay: string;
 
   constructor(
     public navCtrl: NavController,
@@ -22,6 +24,8 @@ export class UserPage {
     ) {
     this.author = navParams.get('author')
     console.log('this.author: ', this.author);
+    let mom = moment(1454521239279).format("DD MMM YYYY hh:mm a");
+    console.log('mom: ', mom)
   }
 
   ionViewDidLoad() {

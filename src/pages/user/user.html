@@ -5,10 +5,18 @@
               <img [src]=  'avatar' >
             </ion-avatar>
             <h1>{{ author }}</h1>
+<div>
             <button ion-button icon-start clear small>
               <ion-icon name="sunny"></ion-icon>
-              <div>karma: {{ karma }}</div>
+              <div>Karma: {{ karma }}</div>
             </button>
+          </div>
+          <div>
+            <button ion-button icon-start clear small>
+                <ion-icon name="pie"></ion-icon>
+                <div>Cake day: {{ karma }}</div>
+              </button>
+            </div>
           </ion-item>
           <button color="secondary" ion-button full>Follow</button>
       </ion-card>
