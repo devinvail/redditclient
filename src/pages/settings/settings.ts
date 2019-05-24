@@ -10,7 +10,7 @@ import { Data } from '../../providers/data';
 export class SettingsPage {
 
   public settings = {
-    sort: 'hot'
+    // sort: 'hot'
   };
 
   constructor(
@@ -19,6 +19,7 @@ export class SettingsPage {
     public dataService: Data
     ) {
     this.settings = this.navParams.get('settings');
+    console.log('this.settings in settings from params: ', this.settings);
   }
 
   save(): void {
