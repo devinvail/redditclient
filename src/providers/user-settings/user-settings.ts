@@ -4,18 +4,20 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UserSettingsProvider {
 
-  _type: string = 'hot';
+  //_type: string = 'hot';
+  public type: string = 'hot'
 
   constructor(public http: HttpClient) {
     console.log('Hello UserSettingsProvider Provider');
   }
 
-  set type (type: string) {
-    this.type = type;
-  }
+//   set type (type: string) {
+//     this.type = type;
+//     console.log('setting type: ', type);
+//   }
 
-  get type(): string {
-    return this._type;
-}
+//   get type(): string {
+//     return this._type;
+// }
 
 }
