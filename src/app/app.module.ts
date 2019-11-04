@@ -16,9 +16,6 @@ import { UserPage } from '../pages/user/user';
 import { HttpClientModule } from '@angular/common/http';
 import { UserSettingsProvider } from '../providers/user-settings/user-settings';
 
-
-
-
 @NgModule({
   declarations: [MyApp, HomePage, SettingsPage, UserPage],
   imports: [BrowserModule, HttpModule, IonicModule.forRoot(MyApp), IonicStorageModule.forRoot(), HttpClientModule],
