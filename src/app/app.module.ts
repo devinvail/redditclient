@@ -12,7 +12,6 @@ import {Data} from '../providers/data';
 import {Reddit} from '../providers/reddit';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
-import { TabsPage } from '../pages/tabs/tabs';
 import { UserPage } from '../pages/user/user';
 import { HttpClientModule } from '@angular/common/http';
 import { UserSettingsProvider } from '../providers/user-settings/user-settings';
@@ -21,10 +20,10 @@ import { UserSettingsProvider } from '../providers/user-settings/user-settings';
 
 
 @NgModule({
-  declarations: [MyApp, HomePage, SettingsPage, TabsPage, UserPage],
+  declarations: [MyApp, HomePage, SettingsPage, UserPage],
   imports: [BrowserModule, HttpModule, IonicModule.forRoot(MyApp), IonicStorageModule.forRoot(), HttpClientModule],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, SettingsPage, TabsPage, UserPage],
+  entryComponents: [MyApp, HomePage, SettingsPage, UserPage],
   providers: [
     UserSettingsProvider,
     IonicStorageModule,

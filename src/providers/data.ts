@@ -8,7 +8,7 @@ export class Data {
   constructor(public storage: Storage  ) {}
 
   getData(): Promise<any> {
-    console.log('returning new setting to storage: ', this.storage.get('settings'));
+    console.log('returning new setting from storage: ', this.storage.get('settings'));
     return this.storage.get('settings');
   }
 

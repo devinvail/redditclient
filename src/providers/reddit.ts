@@ -12,6 +12,7 @@ export class Reddit {
         'https://www.reddit.com/r/funny/' + settings.sort + '/.json?limit=100'
       )
       .map(postData => {
+        console.log('data:  ', postData);
         let resJ = JSON.parse(postData['_body']);
         return resJ;
       });
